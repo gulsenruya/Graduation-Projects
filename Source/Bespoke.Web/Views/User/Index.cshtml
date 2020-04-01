@@ -1,0 +1,53 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @model  Bespoke.Web.Model.UserModel
+}
+@{
+    if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <script>
+                $(document).ready(function () {
+                    swal("Success", "@Html.Raw(Model.Message)", "success");
+                })
+        </script>
+    }
+}
+
+<div>
+    <br />
+    <a href="/User/Create">Create a New User</a>
+    <br />
+</div>
+<br />
+<div class="bs-example">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+
+                for (int i = 0; i < Model.Users.Count; i++)
+                {
+                    <tr>
+                        <td>@Model.Users[i].Id</td>
+                        <td>@Model.Users[i].Username</td>
+                        <td>@Model.Users[i].Name</td>
+                        <td>@Model.Users[i].Surname</td>
+                        <td>@Model.Users[i].Phone</td>
+                        <td><a href="User/Update/@Model.Users[i].Id">Update</a></td>
+                        <td><a href="User/Remove/@Model.Users[i].Id">Remove</a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

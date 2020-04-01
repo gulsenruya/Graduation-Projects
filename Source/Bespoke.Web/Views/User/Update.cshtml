@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @model Bespoke.Web.Model.UserModel
+}
+
+@{
+    if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <script>
+                $(document).ready(function () {
+                    swal("Uyarı", "@Html.Raw(Model.Message)", "error");
+                })
+        </script>
+    }
+}
+<div class="content-row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <b>Update User</b>
+            </div>
+            <div class="panel-options">
+                <a class="bg" data-target="#sample-modal-dialog-1" data-toggle="modal" href="#sample-modal"><i class="entypo-cog"></i></a>
+                <a data-rel="collapse" href="#"><i class="entypo-down-open"></i></a>
+                <a data-rel="close" href="#!/tasks" ui-sref="Tasks"><i class="entypo-cancel"></i></a>
+            </div>
+        </div>
+        <div class="panel-body">
+
+            @using (Html.BeginForm("Update", "User", FormMethod.Post, new { @role = "form" }))
+            {
+                @Html.HiddenFor(x => Model.User.Id)
+                @Html.HiddenFor(x => Model.User.IsActive)
+                @Html.HiddenFor(x => Model.User.UserTypeId)
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Category</label>
+                    @Html.DropDownListFor(m => m.SelectedBranch, Model.Branches, "- Please select a branch -", new { @class = "form-control" })
+                </div>
+
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">User name</label>
+                    @Html.TextBoxFor(x => Model.User.Username, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Password</label>
+                    @Html.TextBoxFor(x => Model.User.Password, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Name</label>
+                    @Html.TextBoxFor(x => Model.User.Name, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Name</label>
+                    @Html.TextBoxFor(x => Model.User.Surname, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Phone</label>
+                    @Html.TextBoxFor(x => Model.User.Phone, new { @class = "form-control" })
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            }
+        </div>
+    </div>
+</div>

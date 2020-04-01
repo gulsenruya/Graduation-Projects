@@ -1,0 +1,52 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @model  Bespoke.Web.Model.BranchModel
+}
+@{
+    if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <script>
+                $(document).ready(function () {
+                    swal("Success", "@Html.Raw(Model.Message)", "success");
+                })
+        </script>
+    }
+}
+
+<div>
+    <br />
+    <a href="/Branch/Create">Create a New Branch</a>
+    <br />
+</div>
+<br />
+<div class="bs-example">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Logo</th>
+                <th>Name</th>
+                <th>Since</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+
+                for (int i = 0; i < Model.Branches.Count; i++)
+                {
+                    <tr>
+                        <td>@Model.Branches[i].Id</td>
+                        <td><img src="\Assets\branchlogos\@Model.Branches[i].Logo" height="50" width="50" /></td>
+                        <td>@Model.Branches[i].Name</td>
+                        <td>@Model.Branches[i].Since.Value.ToShortDateString()</td>
+                        <td><a href="Branch/Update/@Model.Branches[i].Id">Update</a></td>
+                        <td><a href="Branch/Remove/@Model.Branches[i].Id">Remove</a></td>
+                        <td><a href="Branch/Categories/@Model.Branches[i].Id">Categories</a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

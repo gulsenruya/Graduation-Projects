@@ -1,0 +1,16 @@
+﻿@model Bespoke.Web.Model.DashboardModel
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="panel panel-default">
+    <div class="panel-heading">User Information</div>
+    <ul class="list-group">
+        <li class="list-group-item">@Model.ActiveUser.Name</li>
+        <li class="list-group-item">@Model.ActiveUser.Surname</li>
+        <li class="list-group-item"> @Model.ActiveUser.Username</li>
+        <li class="list-group-item">@Model.ActiveUser.Phone</li>
+    </ul>
+</div>
