@@ -1,0 +1,49 @@
+﻿@using OnlineShoppingCome_491.Models;
+@model IEnumerable<ProductModel>
+@{
+    ViewBag.Title = "List";
+}
+
+<div class="row">
+    <div class="col-md-2">
+        @Html.Action("GetCategories", "Home")
+    </div>
+
+    <div class="col-md-10">
+        <div class="row">
+            <div class="col-md-12">
+                @if (Model.Count() == 0)
+                {
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                        Bu kategoride bir ürün bulunamadı.
+                    </div>
+
+                }
+                else
+                {
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fa fa-check-square" aria-hidden="true"></i>
+                        @Model.Count() adet ürün bulundu.
+                    </div>
+                }
+            </div>
+                @foreach (var urun in Model)
+                {<div class="col-md-4">
+
+                        <div class="card">
+                            <img class="card-img-top" src="/Upload/@urun.Image">
+                            <div class="card-body">
+
+                                <a href="/Home/Details/@urun.Id"><p class="card-text">@urun.Name</p></a>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">@urun.Price</small>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+    </div>
+</div>
+
